@@ -43,8 +43,7 @@ route.post('/edit',(req,res)=>{
                 })
                 .then((gotData)=>{
                     gotData.firstName = req.body.firsName,
-                    gotData.lastName = req.body.lastName
-                    gotData.password = req.body.password,
+                    gotData.lastName = req.body.lastName,
                     gotData.avatar = `userProfile/${req.file.filename}`
                     return gotData.save()
                 })

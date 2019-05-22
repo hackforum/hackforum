@@ -8,10 +8,37 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+
     <title>HackForum</title>
   </head>
   <body>
     <h1>Hello, world!</h1>
+
+    <form action="/post/add" method="POST">
+        <textarea name="content" id="editor">
+                <p>Here goes the initial content of the editor.</p>
+            </textarea>
+            <button type="submit" id="getdata">Print data</button>
+            <script>
+                let theEditor;
+        
+                ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    theEditor = editor;
+        
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        
+                function getDataFromTheEditor() {
+                    return theEditor.getData();
+                }
+            </script>
+    </form>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

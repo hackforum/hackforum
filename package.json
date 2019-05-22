@@ -19,6 +19,7 @@
   "homepage": "https://github.com/hackforum/hackforum#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "ckeditor": "^4.11.4",
     "ejs": "^2.6.1",
     "express": "^4.17.0",
     "express-session": "^1.16.1",

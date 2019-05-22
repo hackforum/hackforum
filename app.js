@@ -7,6 +7,7 @@ const profileRoutes = require('./routes/profileRoutes')
 const categoryRoutes = require('./routes/categoryRoutes')
 const postRoutes = require('./routes/postRoutes')
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'))
  
 
 app.use('/', landingRoutes)

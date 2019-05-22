@@ -64,12 +64,24 @@ module.exports = (sequelize, DataTypes) => {
         var hash = bcrypt.hashSync(value.password, salt);
         value.password = hash
         value.status = false
-        value.avatar = "ASDASDASD"
+        value.avatar = "userProfile/defaultPhoto.png"
       }
     }
   });
   User.associate = function(models) {
     // associations can be defined here
   };
+
+ 
+  
+  User.prototype.getFullName = function() {
+    return [this.firstName, this.lastName].join(" ")  
+  }
+  
+  User.prototype.joinDate = function() {
+    let date = this.createdAt.toISOString() 
+    return date.substring(0,10)  
+  }
+
   return User;
 };

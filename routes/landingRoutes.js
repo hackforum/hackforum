@@ -1,8 +1,9 @@
 const route = require('express').Router()
 const Model = require('../models')
+
 const User = Model.User
 var bcrypt = require('bcryptjs');
-// const Songs = Model.Songs
+
  
  
 route.get('/',(req,res) => {

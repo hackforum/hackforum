@@ -39,7 +39,7 @@
           </div>
           <div class="col-md-9">
             <h1 class="user-name visible-md visible-lg">
-                <%= data.getFullName() %>
+                <b><%= data.getFullName().toUpperCase() %></b>
             </h1>
           </div>
         </div>
@@ -50,7 +50,7 @@
             410
           </div>
           <p>
-            BUILDERS POINTS Earned
+            TOTAL POST
             <a data-fancybox="point-description" data-src="#point-description" href="javascript:void(0);" title="Learn More"><span class="fa fa-question-circle-o"></span></a>
           </p>
         </div>
@@ -127,7 +127,7 @@
         <div class="col-sm-4">
           <div class="builders-bucks-given">
             <h3>
-              Given
+              Total Post
               <a href="javascript:void(0);" class="bb-nominate" title="Nominate Someone"><span class="fa fa-plus-circle"></a>
             </h3>
             <div class="value">
@@ -138,7 +138,7 @@
         <div class="col-sm-4">
           <div class="builders-bucks-received">
             <h3>
-              Received
+              Total Comment
               <a data-fancybox="registration" data-src="#received" href="javascript:void(0);" class="bb-list" title="View Your Builders Bucks"><span class="fa fa-list-ul"></a>
             </h3>
             <div class="value">
@@ -149,7 +149,7 @@
         <div class="col-sm-4">
           <div class="builders-bucks-balance">
             <h3>
-              Balance
+              Total Post
               <a href="javascript:void(0);" class="bb-balance" title="View Your Balance"><span class="fa fa-credit-card"></a>
             </h3>
             <div class="value">
@@ -185,11 +185,11 @@
               </div>
           <div class="form-group">
             <label for="firtsname">First Name</label>
-            <input name="firstName" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="<%= data.firstName %>">
+            <input name="firstName" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" value="<%= data.firstName %>">
           </div>
           <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input name="lastName" type="text" class="form-control" id="lastname" placeholder="<%= data.lastName %>">
+            <input name="lastName" type="text" class="form-control" id="lastname" value="<%= data.lastName %>">
           </div>
           <div class="form-group">
             <label for="username">Username</label>
@@ -198,10 +198,6 @@
           <div class="form-group">
             <label for="exampleInputPassword1">email</label>
             <input name="email" type="text" class="form-control" id="email" placeholder="<%= data.email %>" disabled>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="password" placeholder="Password">
           </div>
           
           <button type="submit" class="btn btn-primary">Submit</button>

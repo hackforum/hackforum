@@ -5,6 +5,8 @@ const landingRoutes = require('./routes/landingRoutes')
 const registerRoutes = require('./routes/registerRoutes')
 const profileRoutes = require('./routes/profileRoutes')
 const categoryRoutes = require('./routes/categoryRoutes')
+const postRoutes = require('./routes/postRoutes')
+const validateRoutes = require('./routes/validateRoutes')
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'))
  
@@ -13,6 +15,8 @@ app.use('/', landingRoutes)
 app.use('/register', registerRoutes)
 app.use('/profile', profileRoutes)
 app.use('/category', categoryRoutes)
+app.use('/post', postRoutes)
+app.use('/validate', validateRoutes)
 
  
 app.listen(port, () => {

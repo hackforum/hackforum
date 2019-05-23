@@ -14,11 +14,13 @@ route.get('/', (req, res)=> {
 })
 
 route.get('/add',(req, res)=>{
+    console.log(req.session.username);
+    
     let user = null
     User.findOne({
         where : {
-            username: 'novitarkhmwt'
-            // username : req.session.username
+            // username: 'novitarkhmwt'
+            username : req.session.username
         }
     })
     .then((dataUser) => {

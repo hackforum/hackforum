@@ -22,7 +22,8 @@ route.get('/:id',(req,res)=>{
     .then((gotData)=>{
         // res.send(gotData)
         res.render('singlePost.ejs',{
-            data : gotData
+            data : gotData,
+            userlogin : req.session.username
         })
     })
     .catch((err) => {

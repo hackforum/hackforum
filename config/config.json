@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "1234",
-    "database": "hackForum2",
+    "password": "asdasd123",
+    "database": "hackForum",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

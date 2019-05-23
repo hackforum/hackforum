@@ -14,11 +14,14 @@ route.get('/',(req,res) => {
 })
 
 route.post('/',(req,res)=>{
-    // res.send(req.body)
+    
+    
     User.findOne({
         where : {username: req.body.username}
     })
     .then((gotData)=>{
+        
+        
         if(gotData){
             // res.send(gotData);
             
@@ -28,8 +31,8 @@ route.post('/',(req,res)=>{
                 // var hash = bcrypt.hashSync(req.body.password, salt);
                 if(bcrypt.compareSync(req.body.password, gotData.password)){
                     req.session.username = gotData.username
+                    // console.log(req.session)
                     res.redirect('/profile')
-                    console.log(req.session)
                 } else {
                     throw Error("Password Not Match")
                 }
@@ -41,7 +44,7 @@ route.post('/',(req,res)=>{
         }
     })
     .catch((err) => {
-        res.redirect(`/?errMsg=` + err.message)
+        res.redirect(`/login?errMsg=` + err.message)
     })
 })
  

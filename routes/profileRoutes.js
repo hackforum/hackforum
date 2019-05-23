@@ -20,12 +20,10 @@ const upload = multer({
 }).single('userProfile')
  
 route.get('/',(req,res)=>{
-    // let gotId = req.params.id
     User.findOne({
-        where : {username : "friskazahria"}
+        where : {username : "novitarkhmwt"}
     })
     .then((gotData)=>{
-        // res.send(gotData)
         res.render('profile.ejs',{
             data : gotData
         })

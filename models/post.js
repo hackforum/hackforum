@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Post.associate = function(models) {
     Post.belongsTo(models.User, {foreignKey: 'UserId'})
-
+    Post.hasMany(models.Comment, {foreignKey: 'PostId'})
     Post.hasMany(models.PostCat, {foreignKey: 'PostId'})
   };
   return Post;

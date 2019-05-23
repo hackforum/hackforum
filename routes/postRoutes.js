@@ -3,6 +3,7 @@ const User = require('../models').User
 const Category = require('../models').Category
 const Post = require('../models').Post
 const PostCat = require('../models').PostCat
+const Comment = require('../models').Comment
 
 route.get('/', (req, res)=> {
     Post.findAll({
@@ -86,5 +87,31 @@ route.post('/add', (req, res)=> {
         req.send(err)
     })
 })
+
+route.get('/:postId', (req, res)=> {
+    Promise.all([
+        Post.findByPk(req.params.postId, {
+            include: [{
+                model : PostCat,
+                include : [{
+                    model : Category
+                }]
+            }]
+        }), 
+        Post.findByPk(req.params.postId, {
+            include:[{
+                model: Comment,
+                include : [{
+                    model : User
+                }]
+            }]
+        })
+    ])
+    .then((post) => {
+        res.send(post)
+    })
+})
+
+
 
 module.exports = route

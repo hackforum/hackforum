@@ -1,15 +1,18 @@
 const route = require('express').Router()
-const Model = require('../models')
+const User = require('../models').User
+const Tag = require('../models').Tag
+const isLogin = require('../')
 
 route.get('/', (req, res)=> {
     res.send('post')
 })
 
-route.get('/add', (req, res)=>{
+route.get('/add/:userId', (req, res)=>{
+   
     res.render('post.ejs')
 })
 
-route.post('/add', (req, res)=> {
+route.post('/add/:userId', (req, res)=> {
     res.send(req.body)
 })
 

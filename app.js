@@ -13,7 +13,7 @@ app.use(session({
     cookie: { secure: true }
 }))
 
-app.use('/', require('./routes/postRoutes'))
+app.use('/', require('./routes/allPostRoutes'))
 app.use('/login', require('./routes/landingRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
 app.use('/profile', require('./routes/profileRoutes'))

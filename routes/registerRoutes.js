@@ -22,6 +22,7 @@ route.get('/',(req,res) => {
 })
 
 route.post('/',(req,res)=>{
+    console.log(req.body)
 
     let token = randomString.generate()
     let emailCont = `
@@ -47,7 +48,7 @@ route.post('/',(req,res)=>{
         lastName     : req.body.lastName,
         username : req.body.username,
         email : req.body.email,
-        password : req.body.passwd,
+        password : req.body.password,
         token : token
     }
     User.create(createData)
@@ -55,7 +56,7 @@ route.post('/',(req,res)=>{
         res.redirect('/login')
     })
     .catch((err)=>{
-        // res.send( err.errors[0].message)
+        // res.send( err)
         res.redirect('/register?errMsg=' + err.errors[0].message)
         // res.redirect(`/?errMsg=` + err.message)
     })

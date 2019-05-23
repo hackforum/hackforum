@@ -11,7 +11,62 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1><%= data.title %></h1>
+    
+
+      <% if(!userlogin){ %>
+        <%-include('./partials/navbarLogin.ejs') %>
+      <% } else { %>
+        <%-include('./partials/navbar.ejs') %>
+      <% } %>
+
+    <div class="container">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+
+              <div class="card border-dark mb-3" style="max-width: 60rem; margin-top:20px ">
+                  <div class="card-header"><%= data.title %></div>
+                  <div class="card-body text-dark">
+                    <p class="card-text"><%- data.content %></p>
+                    <% let DataCat = "" %>
+                    <% for (let i = 0; i < data.PostCats.length; i++) { %>
+                           <% DataCat += "#" + data.PostCats[i].Category.name + " " %>
+                      
+                    <% } %>
+                    <div class="card-footer bg-transparent border-success"><%= DataCat  %></div>
+                  </div>
+                </div>
+
+
+
+                <% for (let i = 0; i < comment.length; i++) { %>
+                  <div class="card border-dark mb-3" style="max-width: 60rem;">
+                      <div class="card-header">Comment By: <%= userlogin %></div>
+                      <div class="card-body text-dark">
+                        <p class="card-text"><%= comment[i].content%></p>
+                      </div>
+                    </div>
+                 
+                <% } %>
+
+
+
+
+                <form action="/post/<%= data.id %>/addComment" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Add Comment Here:</label>
+                        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>  
+                      <button type="submit" class="btn btn-primary">Add Comment</button>
+                </form>
+
+
+
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -13,6 +13,22 @@ route.get('/', (req, res)=> {
     })
 })
 
+route.get('/:id',(req,res)=>{
+    let gotId = req.params.id
+    Post.findOne({
+        where : {id : gotId}
+    })
+    .then((gotData)=>{
+        // res.send(gotData)
+        res.render('singlePost.ejs',{
+            data : gotData
+        })
+    })
+    .catch((err) => {
+        res.send(err)
+    })
+})
+
 route.get('/add',(req, res)=>{
     console.log(req.session.username);
     

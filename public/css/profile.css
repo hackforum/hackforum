@@ -33,17 +33,18 @@
   ------------------ User Profile -----------------
   ---------------------------------------------- */
   .user-profile-heading {
-    background-color: #fba51a;
+    background-color: rgb(255, 145, 0);
     color: #fff;
     margin-bottom: 50px;
     padding: 0;
+    height: 150px;
     position: relative;
   }
   .user-profile-heading .user-photo {
     border: 4px solid #fff;
     position: absolute;
     width: 180px;
-    top: 20px;
+    top: 10px;
   }
   .user-profile-heading h1.user-name {
     font-size: 45px;

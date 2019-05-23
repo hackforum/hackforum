@@ -12,10 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING
   }, {});
   Comment.associate = function(models) {
-
-    // models.User.belongsToMany(models.Post, {through: 'Comment', foreignKey: 'UserId'})
-    // models.Post.belongsToMany(models.User, {through: 'Comment', foreignKey: 'PostId'})
-
+    models.User.belongsToMany(models.Post, {through: 'Comment', foreignKey: 'UserId'})
+    models.Post.belongsToMany(models.User, {through: 'Comment', foreignKey: 'PostId'})
     Comment.belongsTo(models.Post, {foreignKey: 'PostId'})
     Comment.belongsTo(models.User, {foreignKey: 'UserId'})
   };

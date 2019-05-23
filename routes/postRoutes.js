@@ -86,30 +86,40 @@ route.get('/:postId', (req, res)=> {
         }), 
         Post.findByPk(req.params.postId, {
             include:{
-                model: Comment,
-                include : {
-                    model : User
-                }
+                model: Comment
             }
         })
     ])
     .then((post) => {
         res.send(post)
     })
+    .catch((err)=> {
+        res.send(err)
+    })
 })
 
-route.get('/:id',(req,res)=>{
-    let gotId = req.params.id
-    Post.findOne({
-        where : {id : gotId}
-    })
-    .then((gotData)=>{
-        // res.send(gotData)
-        res.render('singlePost.ejs',{
-            data : gotData
+route.post('/:postId/addComment', (req, res)=> {
+    let dataPost = null
+    Post.findByPk(req.params.postId)
+    .then((post)=> {
+        dataPost = post
+        return User.findOne({
+            where: {
+                username : req.session.username
+            }
         })
     })
-    .catch((err) => {
+    .then((user)=> {
+       return Comment.create({
+            UserId: user.id,
+            PostId: dataPost.id,
+            content: req.body.content
+        })
+    })
+    .then(success => {
+        res.redirect('/post/success.PostId')
+    })
+    .catch((err)=> {
         res.send(err)
     })
 })

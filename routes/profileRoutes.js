@@ -20,8 +20,10 @@ const upload = multer({
 }).single('userProfile')
  
 route.get('/',(req,res)=>{
+    // console.log(req.session);
+    
     User.findOne({
-        where : {username : "novitarkhmwt"}
+        where : {username : req.session.username}
     })
     .then((gotData)=>{
         res.render('profile.ejs',{
@@ -34,10 +36,9 @@ route.get('/',(req,res)=>{
 })
 
 route.post('/edit',(req,res)=>{
-    
     upload(req,res, (err) => {
         User.findOne({
-            where : {username : "friskazahria"}
+            where : {username : req.session.username}
         })
         .then((gotData)=>{
             gotData.firstName = req.body.firsName,
@@ -51,7 +52,6 @@ route.post('/edit',(req,res)=>{
         .catch((err) => {
             res.send(err)
         })
-        
     })
 
 })

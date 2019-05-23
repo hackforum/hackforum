@@ -10,11 +10,11 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }))
 
 app.use('/', require('./routes/allPostRoutes'))
-app.use('/post', require('./routes/postRoutes'))
+app.use('/logout', require('./routes/logoutRoutes'))
 app.use('/login', require('./routes/loginRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
 app.use('/profile', require('./routes/profileRoutes'))

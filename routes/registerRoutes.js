@@ -52,7 +52,7 @@ route.post('/',(req,res)=>{
     }
     User.create(createData)
     .then(()=>{
-        res.redirect('/')
+        res.redirect('/login')
     })
     .catch((err)=>{
         // res.send( err.errors[0].message)

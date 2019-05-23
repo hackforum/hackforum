@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Post.belongsToMany(models.User, {through: 'Comment', foreignKey: 'PostId'})
     Comment.belongsTo(models.Post, {foreignKey: 'PostId'})
     Comment.belongsTo(models.User, {foreignKey: 'UserId'})
+
   };
   return Comment;
 };

@@ -15,6 +15,8 @@ route.get('/',(req,res) => {
         include : [{model : User}]
     })
     .then(gotAllData => {
+        console.log(gotAllData);
+        
         // res.send(gotAllData)
         res.render('allPost.ejs',{
             data : gotAllData,

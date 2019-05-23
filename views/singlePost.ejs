@@ -41,7 +41,7 @@
 
                 <% for (let i = 0; i < comment.length; i++) { %>
                   <div class="card border-dark mb-3" style="max-width: 60rem;">
-                      <div class="card-header">Comment By: <%= userlogin %></div>
+                      <div class="card-header">Comment: <%= i + 1 %></div>
                       <div class="card-body text-dark">
                         <p class="card-text"><%= comment[i].content%></p>
                       </div>

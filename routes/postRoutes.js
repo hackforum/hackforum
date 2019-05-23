@@ -76,6 +76,7 @@ route.post('/add', (req, res)=> {
 
 route.get('/:postId', (req, res)=> {
     let dataPost = null
+    let dataComment = null
         Post.findByPk(req.params.postId, {
             include: {
                 model : PostCat,
@@ -91,11 +92,17 @@ route.get('/:postId', (req, res)=> {
             
         })
         .then((gotComment)=> {
-            // res.send(gotComment)
+            dataComment = gotComment
+            return User.findOne({
+                where : {username : req.session.username}
+            })
+            
+        })
+        .then((user)=> {
             res.render('singlePost.ejs',{
                     data : dataPost,
-                    comment : gotComment,
-                    userlogin : req.session.username
+                    comment : dataComment,
+                    userlogin : user.username
                 })
         })
         // res.render('singlePost.ejs',{

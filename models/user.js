@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       validate : {
         isEmail : {
           args : true,
-          msg : "Email Already Registered"
+          msg : "Email Format Not Valid"
         },
         isUnique : function(value, next){
                   User.findOne({
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
                   })
                   .then((gotData) => {
                     if(gotData){
-                      throw new Error("This Email Use")
+                      throw new Error("Email Already Registered")
                     } else {
                       next()
                     }

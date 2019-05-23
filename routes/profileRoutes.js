@@ -4,7 +4,8 @@ const User = Model.User
 const multer = require('multer')
 const path = require('path')
 const checkImgType = require('../helper/checkImgType')
-const Users = Model.Users
+const Post = Model.Post
+const Comment = Model.Comment
 const storage = multer.diskStorage({
     destination : './public/userProfile',
     filename : function(req, file, cb){
@@ -21,13 +22,21 @@ const upload = multer({
  
 route.get('/',(req,res)=>{
     // console.log(req.session);
-    
+    let dataUser
     User.findOne({
-        where : {username : req.session.username}
+        where : {username : req.session.username},
+        include : [{model : Post}]
     })
     .then((gotData)=>{
+       dataUser = gotData
+        return Comment.findAll({
+            where : {UserId : gotData.id}
+        })
+    })
+    .then((dataComment)=>{
         res.render('profile.ejs',{
-            data : gotData
+            data : dataUser,
+            comment : dataComment
         })
     })
     .catch((err) => {

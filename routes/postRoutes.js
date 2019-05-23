@@ -48,7 +48,7 @@ route.get('/add',(req, res)=>{
 route.post('/add', (req, res)=> {
     User.findOne({
         where : {
-            username : 'novitarkhmwt'
+            username : req.session.username
         }
     })
     .then((dataUser)=> {
@@ -70,12 +70,12 @@ route.post('/add', (req, res)=> {
         res.redirect('/')
     })
     .catch((err)=> {
-        req.send(err)
+        res.send(err)
     })
 })
 
 route.get('/:postId', (req, res)=> {
-    Promise.all([
+    let dataPost = null
         Post.findByPk(req.params.postId, {
             include: {
                 model : PostCat,
@@ -83,15 +83,25 @@ route.get('/:postId', (req, res)=> {
                     model : Category
                 }
             }
-        }), 
-        Post.findByPk(req.params.postId, {
-            include:{
-                model: Comment
-            }
         })
-    ])
     .then((post) => {
-        res.send(post)
+        dataPost = post
+         Comment.findAll({
+            where : {PostId : post.id}
+            
+        })
+        .then((gotComment)=> {
+            // res.send(gotComment)
+            res.render('singlePost.ejs',{
+                    data : dataPost,
+                    comment : gotComment,
+                    userlogin : req.session.username
+                })
+        })
+        // res.render('singlePost.ejs',{
+        //     data : post,
+        //     userlogin : req.session.username
+        // })
     })
     .catch((err)=> {
         res.send(err)
@@ -102,6 +112,7 @@ route.post('/:postId/addComment', (req, res)=> {
     let dataPost = null
     Post.findByPk(req.params.postId)
     .then((post)=> {
+        // res.send(post)
         dataPost = post
         return User.findOne({
             where: {
@@ -110,6 +121,7 @@ route.post('/:postId/addComment', (req, res)=> {
         })
     })
     .then((user)=> {
+        // res.send(user)
        return Comment.create({
             UserId: user.id,
             PostId: dataPost.id,
@@ -117,7 +129,7 @@ route.post('/:postId/addComment', (req, res)=> {
         })
     })
     .then(success => {
-        res.redirect('/post/success.PostId')
+        res.redirect(`/post/${success.PostId}`)
     })
     .catch((err)=> {
         res.send(err)

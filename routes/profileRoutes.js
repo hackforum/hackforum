@@ -4,7 +4,8 @@ const User = Model.User
 const multer = require('multer')
 const path = require('path')
 const checkImgType = require('../helper/checkImgType')
-const Users = Model.Users
+const Post = Model.Post
+const Comment = Model.Comment
 const storage = multer.diskStorage({
     destination : './public/userProfile',
     filename : function(req, file, cb){
@@ -20,14 +21,22 @@ const upload = multer({
 }).single('userProfile')
  
 route.get('/',(req,res)=>{
-    // let gotId = req.params.id
+    // console.log(req.session);
+    let dataUser
     User.findOne({
-        where : {username : "friskazahria"}
+        where : {username : req.session.username},
+        include : [{model : Post}]
     })
     .then((gotData)=>{
-        // res.send(gotData)
+       dataUser = gotData
+        return Comment.findAll({
+            where : {UserId : gotData.id}
+        })
+    })
+    .then((dataComment)=>{
         res.render('profile.ejs',{
-            data : gotData
+            data : dataUser,
+            comment : dataComment
         })
     })
     .catch((err) => {
@@ -36,24 +45,22 @@ route.get('/',(req,res)=>{
 })
 
 route.post('/edit',(req,res)=>{
-    
     upload(req,res, (err) => {
-                User.findOne({
-                    where : {username : "friskazahria"}
-                })
-                .then((gotData)=>{
-                    gotData.firstName = req.body.firsName,
-                    gotData.lastName = req.body.lastName,
-                    gotData.avatar = `userProfile/${req.file.filename}`
-                    return gotData.save()
-                })
-                .then(()=>{
-                    res.redirect('/profile')
-                })
-                .catch((err) => {
-                    res.send(err)
-                })
-        
+        User.findOne({
+            where : {username : req.session.username}
+        })
+        .then((gotData)=>{
+            gotData.firstName = req.body.firsName,
+            gotData.lastName = req.body.lastName,
+            gotData.avatar = `userProfile/${req.file.filename}`
+            return gotData.save()
+        })
+        .then(()=>{
+            res.redirect('/profile')
+        })
+        .catch((err) => {
+            res.send(err)
+        })
     })
 
 })

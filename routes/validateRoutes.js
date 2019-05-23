@@ -24,7 +24,7 @@ route.post('/',(req,res)=>{
         }
     })
     .then(()=>{
-        res.redirect('/')
+        res.redirect('/login')
     })
     .catch((err) => {
         res.redirect(`/validate?errMsg=` + err.message)

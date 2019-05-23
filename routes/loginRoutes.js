@@ -5,27 +5,32 @@ const User = Model.User
 var bcrypt = require('bcryptjs');
 
  
- 
 route.get('/',(req,res) => {
+    req.session.username = false
     res.render('landing.ejs',{
         err : req.query.errMsg       
     })
 })
 
 route.post('/',(req,res)=>{
-    // res.send(req.body)
+    
+    
     User.findOne({
         where : {username: req.body.username}
     })
     .then((gotData)=>{
+        
+        
         if(gotData){
-            // console.log(gotData);
+            // res.send(gotData);
             
             if(gotData.status === true){
                 
                 // var salt = bcrypt.genSaltSync(10);
                 // var hash = bcrypt.hashSync(req.body.password, salt);
                 if(bcrypt.compareSync(req.body.password, gotData.password)){
+                    req.session.username = gotData.username
+                    // console.log(req.session)
                     res.redirect('/profile')
                 } else {
                     throw Error("Password Not Match")
@@ -38,7 +43,7 @@ route.post('/',(req,res)=>{
         }
     })
     .catch((err) => {
-        res.redirect(`/?errMsg=` + err.message)
+        res.redirect(`/login?errMsg=` + err.message)
     })
 })
  

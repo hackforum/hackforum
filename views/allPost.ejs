@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hello, world!</title>
+    <style>
+    
+    a.custom-card,
+    a.custom-card:hover {
+    color: inherit;
+    }
+    
+    </style>
+  </head>
+  <body>
+
+    <% if(!userlogin){ %>
+      <%-include('./partials/navbarLogin.ejs') %>
+    <% } else { %>
+      <%-include('./partials/navbar.ejs') %>
+    <% } %>
+    
+                        <div class="jumbotron jumbotron-fluid" style="background-image:url('./image/Screenshot from 2019-05-24 04-49-33.png');height: 180px">
+                                <div class="container">
+                                  
+                                </div>
+                            </div>
+
+                            
+                            <div class="container">
+
+
+                              
+
+
+
+                                    <div class="row">
+                                      
+
+
+                                      <div class="col-9 ">
+
+                                        <% for (let i = 0; i < data.length; i++) { %>
+                                          <a href="/post/<%= data[i].id %>" class="custom-card">
+                                          <div class="card mb-3" style="max-width: 800px; height: 130px;">
+                                              <div class="card-header  text-white" style="background-color :rgb(255, 145, 0); height: 35px;">
+                                                  <p><%= data[i].User.username %></p>
+                                                </div>
+                                              <div class="row no-gutters">
+                                                <div class="col-md-1" style="margin-top:20px;margin-left:16px;">
+                                                  <img src="<%= data[i].User.avatar %>" class="card-img" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                  <div class="card-body" style="line-height : 8px;">
+                                                    <p class="card-title" style="font-size : 18px; font-weight:bold;"><%= data[i].title %></p>
+                                                    <p class="card-title text-muted text-truncate" ><%- data[i].content.substring(0, 25) %></p>
+                                                    <p class="card-text"><small class="text-muted"><%= data[i].createdAt %></small></p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </a>
+                                            
+                                        <% } %>
+                                            
+                                                  
+                                      </div>
+
+
+                                      <div class="col">
+                                        
+                                            <div class="card" style="width: 15rem;height: 300px;background-image: url('./image/iklan1.png')">
+                                                    <div class="card-body">
+                                                      <!-- <h5 class="card-title">Card title</h5>
+                                                      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                                                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                                      <!-- <a href="#" class="card-link">Card link</a>
+                                                      <a href="#" class="card-link">Another link</a> -->
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="card" style="width: 15rem;height: 300px;background-image: url('./image/iklan 4.png')">
+                                                      <div class="card-body">
+                                                        <!-- <h5 class="card-title">Card title</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                                                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                                        <!-- <a href="#" class="card-link">Card link</a>
+                                                        <a href="#" class="card-link">Another link</a> -->
+                                                      </div>
+                                                    </div>
+
+
+                                                    <div class="card" style="width: 15rem;height: 300px; background-image: url('./image/iklan 3.png')">
+                                                        <div class="card-body">
+                                                          <!-- <h5 class="card-title">Card title</h5>
+                                                          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                                                          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                                          <!-- <a href="#" class="card-link">Card link</a>
+                                                          <a href="#" class="card-link">Another link</a> -->
+                                                        </div>
+                                                      </div>
+
+                                      </div>
+                                    </div>
+                                    </div>
+                                  </div>
+           
+            
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

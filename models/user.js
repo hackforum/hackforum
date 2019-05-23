@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       validate : {
         isEmail : {
           args : true,
-          msg : "Email Format Not Valid"
+          msg : "Email Already Registered"
         },
         isUnique : function(value, next){
                   User.findOne({
@@ -69,7 +69,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   User.associate = function(models) {
-    // associations can be defined here
+     User.hasMany(models.Comment, {foreignKey: 'UserId'})
+    User.hasMany(models.Post, {foreignKey: 'UserId'})
   };
 
  

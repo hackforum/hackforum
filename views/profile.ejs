@@ -12,22 +12,30 @@
 <link rel='stylesheet' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1535263/font-awesome.min.css'>
 <link rel='stylesheet' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1535263/jquery.fancybox-3.5.7.min.css'>
 
+
       <link rel="stylesheet" href="./css/profile.css">
 
   
 </head>
 
-<body>
+<body> 
 
-  
-<div class="container">
-  <div class="visible-xs visible-sm" id="project-details">
-    <a class="home-link" href="https://codepen.io/bmico/live/mYRvYQ" title="B.O.S.S."><span class="fa fa-home"></span></a>
-    <div class="project">
-      User Profile
-    </div>
-    <div class="clearfix"></div>
+
+
+  <div>
+
+
+      <nav class="navbar navbar-inverse" style="margin-bottom: -100px; background-color:rgb(255, 145, 0);">
+          <ul class="nav navbar-nav" >
+            <li><a href="/" style="color:cornsilk">Forum</a></li>
+            <li><a href="/logout" style="color:cornsilk">Logout</a></li>
+          </ul>
+        </nav>
+
   </div>
+    
+<div class="container">
+  
 </div>
 <div class="user-profile-heading">
   <div class="container">
@@ -47,12 +55,9 @@
       <div class="col-md-3">
         <div class="point-summary">
           <div class="points">
-            410
+            
           </div>
-          <p>
-            TOTAL POST
-            <a data-fancybox="point-description" data-src="#point-description" href="javascript:void(0);" title="Learn More"><span class="fa fa-question-circle-o"></span></a>
-          </p>
+        
         </div>
       </div>
     </div>
@@ -115,7 +120,7 @@
           <a href="/profile"><%= data.email %></a>
         </li>
         <li class="profile-links">
-          <a class="locate" href="https://codepen.io/bmico/live/MZbPpX" title="Locate"><span class="fa fa-map-marker"></span></a><a class="orgchart" href="https://codepen.io/bmico/live/QRwpQa" title="Organization Chart"><span class="fa fa-sitemap"></span></a><a class="linkedin" href="https://www.linkedin.com/in/tmarkart" target="_blank" title="LinkedIn"><span class="fa fa-linkedin"></span></a>
+          <a class="locate" href="/" title="Locate"><span class="fa fa-map-marker"></span></a><a class="orgchart" href="https://codepen.io/bmico/live/QRwpQa" title="Organization Chart"><span class="fa fa-sitemap"></span></a><a class="linkedin" href="https://www.linkedin.com/in/tmarkart" target="_blank" title="LinkedIn"><span class="fa fa-linkedin"></span></a>
         </li>
       </ul>
     </div>
@@ -128,10 +133,10 @@
           <div class="builders-bucks-given">
             <h3>
               Total Post
-              <a href="javascript:void(0);" class="bb-nominate" title="Nominate Someone"><span class="fa fa-plus-circle"></a>
+              <a href="/" class="bb-nominate" title="Nominate Someone"><span class="fa fa-plus-circle"></a>
             </h3>
             <div class="value">
-              0
+              <%= data.Posts.length %>
             </div>
           </div>
         </div>
@@ -139,21 +144,21 @@
           <div class="builders-bucks-received">
             <h3>
               Total Comment
-              <a data-fancybox="registration" data-src="#received" href="javascript:void(0);" class="bb-list" title="View Your Builders Bucks"><span class="fa fa-list-ul"></a>
+              <a data-fancybox="registration" data-src="#received" href="/" class="bb-list" title="View Your Builders Bucks"><span class="fa fa-list-ul"></a>
             </h3>
             <div class="value">
-              45
+              <%= comment.length %>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="builders-bucks-balance">
             <h3>
-              Total Post
-              <a href="javascript:void(0);" class="bb-balance" title="View Your Balance"><span class="fa fa-credit-card"></a>
+              Total Likes
+              <a href="/" class="bb-balance" title="View Your Balance"><span class="fa fa-credit-card"></a>
             </h3>
             <div class="value">
-              40
+              6
             </div>
           </div>
         </div>
@@ -212,45 +217,45 @@
         </h4>
         <ul>
           <li>
-            <span class="online" title="Online"></span><a href="javascript:void(0);">05/08/19 - Welcome video for employees</a>
+            <span class="online" title="Online"></span><a href="/">05/08/19 - Welcome video for employees</a>
           </li>
           <li>
-            <span class="classroom-only" title="Classroom Only"></span><a href="javascript:void(0);">06/15/19 - June Fit Chat with Zach</a>
+            <span class="classroom-only" title="Classroom Only"></span><a href="/">06/15/19 - June Fit Chat with Zach</a>
           </li>
           <li>
-            <span class="learning-path" title="Learning Path"></span><a href="javascript:void(0);">07/17/19 - BU - Strengthfinder</a>
+            <span class="learning-path" title="Learning Path"></span><a href="/">07/17/19 - BU - Strengthfinder</a>
           </li>
         </ul>
       </div>
       <div id="course-transcript">
         <h4>
-          Your Completed Courses
+          Last News
         </h4>
         <ul>
           <li>
-            <span class="online" title="Online"></span><a href="javascript:void(0);">04/23/19 - Excel for Dummies</a>
+            <span class="online" title="Online"></span><a href="/">04/23/19 - Excel for Dummies</a>
           </li>
           <li>
-            <span class="classroom-only" title="Classroom Only"></span><a href="javascript:void(0);">08/03/18 - Policy Life Cycle</a>
+            <span class="classroom-only" title="Classroom Only"></span><a href="/">08/03/18 - Policy Life Cycle</a>
           </li>
           <li>
-            <span class="certification" title="Certification"></span><a href="javascript:void(0);">06/11/18 - Brand Series</a>
+            <span class="certification" title="Certification"></span><a href="/">06/11/18 - Brand Series</a>
           </li>
           <li>
-            <span class="learning-path" title="Learning Path"></span><a href="javascript:void(0);">05/06/17 - Financials 101</a>
+            <span class="learning-path" title="Learning Path"></span><a href="/">05/06/17 - Financials 101</a>
           </li>
           <li>
-            <span class="classroom-only" title="Classroom Only"></span><a href="javascript:void(0);">02/23/17 - Strengthfinders</a>
+            <span class="classroom-only" title="Classroom Only"></span><a href="/">02/23/17 - Strengthfinders</a>
           </li>
           <li class="more">
-            <span class="job-aid" title="Job Aid"></span><a href="javascript:void(0);">01/30/17 - Word for Dummies</a>
+            <span class="job-aid" title="Job Aid"></span><a href="/">01/30/17 - Word for Dummies</a>
           </li>
           <li class="more">
-            <span class="classroom-only" title="Classroom Only"></span><a href="javascript:void(0);">12/25/16 - Employee Orientation            </a>
+            <span class="classroom-only" title="Classroom Only"></span><a href="/">12/25/16 - Employee Orientation            </a>
           </li>
         </ul>
         <div class="text-center">
-          <a class="btn btn-default view-more" href="javascript:void(0);">View More </a>
+          <a class="btn btn-default view-more" href="/">View More </a>
         </div>
       </div>
     </div>
@@ -266,7 +271,7 @@
     <div class="col-sm-12">
       <div class="builders-bucks-nomination">
         <div class="print">
-          <a href="javascript:void(0);" title="Print Certificate">
+          <a href="/" title="Print Certificate">
             <div class="fa fa-print"></div>
           </a>
         </div>
@@ -300,7 +305,7 @@
     <div class="col-sm-12">
       <div class="builders-bucks-nomination">
         <div class="print">
-          <a href="javascript:void(0);" title="Print Certificate">
+          <a href="/" title="Print Certificate">
             <div class="fa fa-print"></div>
           </a>
         </div>
@@ -337,7 +342,7 @@
     <div class="col-sm-12">
       <div class="builders-bucks-nomination">
         <div class="print">
-          <a href="javascript:void(0);" title="Print Certificate">
+          <a href="/" title="Print Certificate">
             <div class="fa fa-print"></div>
           </a>
         </div>

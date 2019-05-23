@@ -15,16 +15,14 @@
   <body>
     <h2>Create Your Post Here</h2>
 
-    <form action="/add" method="POST">
+    <form action="/post/add" method="POST">
         <label>Title: </label>
         <input type="text" name="title">
         <br>
         <label>Tag: </label>
-        <select name="categoryId">
           <% for (let i = 0; i < tags.length; i++){ %>
-            <option value="<%=tags[i].id%>"><%=tags[i].name%></option>
+            <input type="checkbox" id="tagId" name="tagId" value="<%= tags[i].id %>"> <%= tags[i].name %>
           <% } %>
-        </select>
         <textarea name="content" id="editor-htmlwriter"></textarea>
             <button type="submit" id="getdata">Print data</button>
             <script>
@@ -43,10 +41,13 @@
                 function getDataFromTheEditor() {
                     return theEditor.getData();
                 }
+
+                function myFunction() {
+                  var x = document.getElementById("myCheck").value;
+                  return x
+                }
             </script>
     </form>
-    
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

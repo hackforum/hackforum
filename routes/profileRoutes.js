@@ -36,21 +36,21 @@ route.get('/',(req,res)=>{
 route.post('/edit',(req,res)=>{
     
     upload(req,res, (err) => {
-                User.findOne({
-                    where : {username : "friskazahria"}
-                })
-                .then((gotData)=>{
-                    gotData.firstName = req.body.firsName,
-                    gotData.lastName = req.body.lastName,
-                    gotData.avatar = `userProfile/${req.file.filename}`
-                    return gotData.save()
-                })
-                .then(()=>{
-                    res.redirect('/profile')
-                })
-                .catch((err) => {
-                    res.send(err)
-                })
+        User.findOne({
+            where : {username : "friskazahria"}
+        })
+        .then((gotData)=>{
+            gotData.firstName = req.body.firsName,
+            gotData.lastName = req.body.lastName,
+            gotData.avatar = `userProfile/${req.file.filename}`
+            return gotData.save()
+        })
+        .then(()=>{
+            res.redirect('/profile')
+        })
+        .catch((err) => {
+            res.send(err)
+        })
         
     })
 

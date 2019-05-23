@@ -14,7 +14,8 @@ app.use(session({
 }))
 
 app.use('/', require('./routes/allPostRoutes'))
-app.use('/login', require('./routes/landingRoutes'))
+app.use('/post', require('./routes/postRoutes'))
+app.use('/login', require('./routes/loginRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
 app.use('/profile', require('./routes/profileRoutes'))
 app.use('/category', require('./routes/categoryRoutes'))

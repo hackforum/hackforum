@@ -2,9 +2,15 @@ const route = require('express').Router()
 const User = require('../models').User
 const Category = require('../models').Category
 const Post = require('../models').Post
+const PostCat = require('../models').PostCat
 
 route.get('/', (req, res)=> {
-    res.send('post')
+    Post.findAll({
+        include: [User]
+    })
+    .then((data)=> {
+        res.send(data)
+    })
 })
 
 route.get('/add',(req, res)=>{
@@ -24,7 +30,6 @@ route.get('/add',(req, res)=>{
         }
     })
     .then((dataTag)=> {
-        // res.send(dataTag)
         res.render('post.ejs', {
             dataUser : user,
             tags : dataTag 
@@ -42,14 +47,22 @@ route.post('/add', (req, res)=> {
         }
     })
     .then((dataUser)=> {
-        Post.create({
+        return Post.create({
             title : req.body.title,
             content : req.body.content,
             UserId : dataUser.id
         })
     })
+    .then((dataPost) => {
+        for(let i = 0; i < req.body.tagId.length; i++){
+            PostCat.create({
+                PostId : dataPost.id,
+                CategoryId : req.body.tagId[i]
+            })
+        }
+    })
     .then(success => {
-        res.send(`sukses`)
+        res.redirect('/')
     })
     .catch((err)=> {
         req.send(err)

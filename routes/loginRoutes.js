@@ -5,7 +5,6 @@ const User = Model.User
 var bcrypt = require('bcryptjs');
 
  
- 
 route.get('/',(req,res) => {
     req.session.username = false
     res.render('landing.ejs',{
@@ -29,7 +28,6 @@ route.post('/',(req,res)=>{
                 if(bcrypt.compareSync(req.body.password, gotData.password)){
                     req.session.username = gotData.username
                     res.redirect('/profile')
-                    console.log(req.session)
                 } else {
                     throw Error("Password Not Match")
                 }
@@ -41,7 +39,7 @@ route.post('/',(req,res)=>{
         }
     })
     .catch((err) => {
-        res.redirect(`/?errMsg=` + err.message)
+        res.redirect(`/login?errMsg=` + err.message)
     })
 })
  

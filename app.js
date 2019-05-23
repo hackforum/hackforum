@@ -1,22 +1,24 @@
 const express = require('express')
 const app = express()
 const port = 3333
-const landingRoutes = require('./routes/landingRoutes')
-const registerRoutes = require('./routes/registerRoutes')
-const profileRoutes = require('./routes/profileRoutes')
-const categoryRoutes = require('./routes/categoryRoutes')
-const postRoutes = require('./routes/postRoutes')
-const validateRoutes = require('./routes/validateRoutes')
+const session = require('express-session')
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'))
- 
 
-app.use('/', landingRoutes)
-app.use('/register', registerRoutes)
-app.use('/profile', profileRoutes)
-app.use('/category', categoryRoutes)
-app.use('/post', postRoutes)
-app.use('/validate', validateRoutes)
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
+
+app.use('/', require('./routes/postRoutes'))
+app.use('/login', require('./routes/landingRoutes'))
+app.use('/register', require('./routes/registerRoutes'))
+app.use('/profile', require('./routes/profileRoutes'))
+app.use('/category', require('./routes/categoryRoutes'))
+app.use('/validate', require('./routes/validateRoutes'))
 
  
 app.listen(port, () => {

@@ -7,6 +7,9 @@ var bcrypt = require('bcryptjs');
  
  
 route.get('/',(req,res) => {
+    if(req.sesssion.username === undefined){
+        req.session.username = null
+    }
     res.render('landing.ejs',{
         err : req.query.errMsg       
     })
@@ -19,13 +22,14 @@ route.post('/',(req,res)=>{
     })
     .then((gotData)=>{
         if(gotData){
-            // console.log(gotData);
+            // res.send(gotData);
             
             if(gotData.status === true){
                 
                 // var salt = bcrypt.genSaltSync(10);
                 // var hash = bcrypt.hashSync(req.body.password, salt);
                 if(bcrypt.compareSync(req.body.password, gotData.password)){
+                    req.session.isLogin = gotData.username
                     res.redirect('/profile')
                 } else {
                     throw Error("Password Not Match")

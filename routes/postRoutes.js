@@ -69,4 +69,8 @@ route.post('/add', (req, res)=> {
     })
 })
 
+route.get('/:postId', (req, res)=> {
+    Post.findByPk(req.pa)
+})
+
 module.exports = route
